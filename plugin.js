@@ -41,6 +41,14 @@ function alexaHome(log, config, api) {
   this.door = config['door'] || false; // Use mode controller for Garage Doors
   this.name = config['name'] || "homebridgeAlexa";
 
+  if (config['backendUri']) {
+    this.backendUri = config['backendUri'];
+  } else if (this.beta) {
+    this.backendUri = "alexabeta.homebridge.ca";
+  } else {
+    this.backendUri = "alexa.homebridge.ca";
+  }
+
   // Enable config based DEBUG logging enable
   this.debug = config['debug'] || false;
   if (this.debug) {
@@ -86,10 +94,6 @@ alexaHome.prototype = {
 };
 
 alexaHome.prototype.didFinishLaunching = function() {
-  var host = 'alexa.homebridge.ca';
-  if (this.beta) {
-    host = 'alexabeta.homebridge.ca';
-  }
   options = {
     eventBus: this.eventBus,
     username: this.username,
@@ -115,7 +119,7 @@ alexaHome.prototype.didFinishLaunching = function() {
     door: this.door,
     servers: [{
       protocol: 'mqtt',
-      host: host,
+      host: this.backendUri,
       port: 1883
     }]
   };

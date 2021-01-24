@@ -32,6 +32,12 @@
         "placeholder": "031-45-154",
         "description": "This needs to match the Homebridge pin set in your config.json file"
       },
+      "backendUri": {
+        "title": "Backend URI",
+        "type": "string",
+        "placeholder": "https://alexa.homebridge.ca",
+        "description": "The backend server to connect to. Not required unless you have set up a backend such as https://www.homebridge.ca"
+      },
       "routines": {
         "title": " Routines - enables passing to Alexa events from Motion and Contact sensors. For use in the Alexa app to create Routines triggered by these sensors.",
         "type": "boolean",
